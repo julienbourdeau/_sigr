@@ -19,6 +19,12 @@ and Blueprint http://www.blueprintcss.org/
 */
 
 
+/* =Bootstrap
+----------------------------------------------- */
+
+@import url('css/bootstrap.css');
+@import url('css/bootstrap-responsive.css');
+
 /* =Reset
 -------------------------------------------------------------- */
 
@@ -89,6 +95,8 @@ a:active { /* Improves readability when focused and also mouse hovered in all br
 a img {
 	border: 0;
 }
+
+
 
 
 /* =Global

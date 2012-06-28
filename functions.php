@@ -75,6 +75,7 @@ function _s_setup() {
 	 */
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', '_s' ),
+		'footer' => __( 'Footer Menu', '_s' ),
 	) );
 
 	/**

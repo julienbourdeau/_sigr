@@ -26,12 +26,6 @@ Julien Bourdeau's mod
 */
 
 
-/* =Bootstrap
------------------------------------------------ */
-
-@import url('css/bootstrap.css');
-@import url('css/bootstrap-responsive.css');
-
 /* =Reset
 -------------------------------------------------------------- */
 
@@ -325,9 +319,6 @@ textarea {
 /* Links */
 a {
 	color: royalblue;
-}
-a:visited {
-	color: purple;
 }
 a:hover,
 a:focus,

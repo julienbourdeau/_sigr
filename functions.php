@@ -141,6 +141,11 @@ function _s_scripts() {
 	global $post;
 
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
+
+	if ( ENV == 'dev') {
+		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array( 'style' ) );
+		wp_enqueue_style( 'bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array( 'style', 'bootstrap' ) );
+	}
 	
 	if ( defined('ENV') ) {
 		wp_enqueue_style( 'style-dev', get_template_directory_uri() . '/css/style-'.ENV.'.css', array( 'style' ) );

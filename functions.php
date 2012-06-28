@@ -65,6 +65,12 @@ function _s_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	/**
+	 * Enable visual-editor.css
+	 *
+	 */
+	add_editor_style( 'visual-editor.css' );
+
+	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( array(

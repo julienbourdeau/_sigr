@@ -7,6 +7,37 @@
  */
 
 /**
+ * Define Envirment
+ *    - dev = Development
+ * 	  - prod = Production
+ */
+define('ENV', 'dev');
+
+/**
+ * Use LESScss if ENV = dev
+ */
+if(ENV == 'dev') {
+
+	require 'lib/lessc.inc.php';
+
+	$style = 'wp-content/themes/_s/css/style-dev.css';
+	$files = array( 
+				'wp-content/themes/_s/css/styles.less'
+			);
+	  
+	$lc = new lessc();  
+	$css = '';  
+
+	foreach($files as $file){  
+		$css .= file_get_contents($file);  
+	}  
+
+	$css = $lc->parse($css);  
+	file_put_contents($style, $css);
+
+}
+
+/**
  * Set the content width based on the theme's design and stylesheet.
  *
  * @since _s 1.0
@@ -75,7 +106,7 @@ function _s_setup() {
 	 */
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', '_s' ),
-		'footer' => __( 'Footer Menu', '_s' ),
+		//'footer' => __( 'Footer Menu', '_s' ),
 	) );
 
 	/**
@@ -109,6 +140,12 @@ add_action( 'widgets_init', '_s_widgets_init' );
 function _s_scripts() {
 	global $post;
 
+	wp_enqueue_style( 'style', get_stylesheet_uri() );
+	
+	if ( defined('ENV') ) {
+		wp_enqueue_style( 'style-dev', get_template_directory_uri() . '/css/style-'.ENV.'.css', array( 'style' ) );
+	}
+	
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'small-menu', get_template_directory_uri() . '/js/small-menu.js', array( 'jquery' ), '20120206', true );

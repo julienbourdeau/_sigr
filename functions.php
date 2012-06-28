@@ -16,13 +16,13 @@ define('ENV', 'dev');
 /**
  * Use LESScss if ENV = dev
  */
-if(ENV == 'dev') {
+if( ENV == 'dev' && !is_admin() ) {
 
 	require 'lib/lessc.inc.php';
 
-	$style = 'wp-content/themes/_s/css/style-dev.css';
+	$style = get_template_directory() . '/css/style-dev.css';
 	$files = array( 
-				'wp-content/themes/_s/css/styles.less'
+				get_template_directory() . '/css/styles.less'
 			);
 	  
 	$lc = new lessc();  
@@ -142,12 +142,12 @@ function _s_scripts() {
 
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
 
-	if ( ENV == 'dev') {
+	if ( ENV == 'dev' && !is_admin() ) {
 		wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/css/bootstrap.css', array( 'style' ) );
 		wp_enqueue_style( 'bootstrap-responsive', get_template_directory_uri() . '/css/bootstrap-responsive.css', array( 'style', 'bootstrap' ) );
 	}
 	
-	if ( defined('ENV') ) {
+	if ( defined('ENV') && !is_admin() ) {
 		wp_enqueue_style( 'style-dev', get_template_directory_uri() . '/css/style-'.ENV.'.css', array( 'style' ) );
 	}
 	

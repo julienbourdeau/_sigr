@@ -63,6 +63,11 @@ function _s_setup() {
 	require( get_template_directory() . '/inc/template-tags.php' );
 
 	/**
+	 * Custom shortcodes that act independently of the theme templates
+	 */
+	require( get_template_directory() . '/inc/shortcodes.php' );
+
+	/**
 	 * Custom functions that act independently of the theme templates
 	 */
 	//require( get_template_directory() . '/inc/tweaks.php' );

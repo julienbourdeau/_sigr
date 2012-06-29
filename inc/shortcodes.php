@@ -39,3 +39,37 @@ function _s_fancy_box( $atts, $content = null ) {
    return '<div class="fancy_box">' . do_shortcode($content) . '</div>';
 }
 add_shortcode('fancy_box', '_s_fancy_box');
+
+
+
+/**
+ * Create a shortcode for bootstrap buttons
+ * ex: [button size="large" type="success" icon="envelope" white=1]Click Here[/button]
+ *
+ * @since _s 1.0
+ */
+function _s_button( $atts, $content = null ) {
+    extract(shortcode_atts(array(
+        'link'      => '#',
+		'size'		=> '',
+		'icon'		=> '',
+		'white'		=> '',
+		'type'		=> '',
+    ), $atts));
+
+    if ( $type != '' ) $type = "btn-$type";
+    if ( $size != '' ) $size = "btn-$size";
+
+	$out = "<a class=\"btn $type $size\" href=\"" .$link. "\">";
+
+	if ( $icon != '' ) {
+		if ( $white != '' ) $white = "icon-white";
+		$out .= "<i class=\"icon icon-$icon $white \"></i> ";
+	}
+
+	$out .= do_shortcode($content);
+	$out .= "</a>";
+    
+    return $out;
+}
+add_shortcode('button', '_s_button');

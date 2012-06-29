@@ -41,6 +41,9 @@ function _s_fancy_box( $atts, $content = null ) {
 add_shortcode('fancy_box', '_s_fancy_box');
 
 
+//Add a button in tinymce (visual editor)
+
+
 
 /**
  * Create a shortcode for bootstrap buttons
@@ -73,3 +76,27 @@ function _s_button( $atts, $content = null ) {
     return $out;
 }
 add_shortcode('button', '_s_button');
+
+	/**
+	 * Add the previous shortcode into tinyMCE
+	 *
+	 * @since _s 1.0
+	 */
+
+	function _s_add_btn_button() {  
+	   if ( current_user_can('edit_posts') &&  current_user_can('edit_pages') )  
+	   {  
+	     add_filter('mce_external_plugins', '_s_add_btn_plugin');  
+	     add_filter('mce_buttons', '_s_register_btn_button');  
+	   }  
+	} 
+	function _s_register_btn_button($buttons) {  
+	   array_push($buttons, "button");  
+	   return $buttons;  
+	}
+	function _s_add_btn_plugin($plugin_array) {  
+	   $plugin_array['button'] = get_bloginfo('template_url').'/js/shortcode-btn.js';  
+	   return $plugin_array;  
+	} 
+
+	add_action('init', '_s_add_btn_button'); 

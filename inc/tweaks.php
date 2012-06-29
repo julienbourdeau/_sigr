@@ -50,3 +50,15 @@ function _s_enhanced_image_navigation( $url, $id ) {
 	return $url;
 }
 add_filter( 'attachment_link', '_s_enhanced_image_navigation', 10, 2 );
+
+
+/**
+ * Extend valid elements in visual editor, especially iframe
+ *
+ * @since _s 1.0
+ */
+function _s_extend_valid_elements($init) {
+	$init["extended_valid_elements"] = "iframe[id|class|title|style|align|frameborder|height|longdesc|marginheight|marginwidth|name|scrolling|src|width]";
+	return $init;
+}
+add_filter('tiny_mce_before_init', '_s_extend_valid_elements');

@@ -3,7 +3,7 @@
         init : function(ed, url) {  
             ed.addButton('button', {  
                 title : 'Add a Button',  
-                image : url+'/../images/admin/button.png',  
+                image : url+'/../../images/admin/button.png',  
                 onclick : function() {  
                      ed.selection.setContent('[button size="" type="" icon="" white=""]' + ed.selection.getContent() + '[/button]');  
   

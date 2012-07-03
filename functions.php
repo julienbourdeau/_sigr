@@ -107,6 +107,12 @@ function _s_setup() {
 	add_editor_style( 'visual-editor.css' );
 
 	/**
+	 * Override the [gallery] shortcode
+	 *
+	 */
+	require_once( 'inc/gallery.php');
+
+	/**
 	 * This theme uses wp_nav_menu() in one location.
 	 */
 	register_nav_menus( array(

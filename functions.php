@@ -6,6 +6,9 @@
  * @since _s 1.0
  */
 
+
+require_once 'lib/tinyMceAdder.class.php';
+
 /**
  * Define Envirment
  *    - dev = Development
@@ -179,3 +182,12 @@ add_action( 'wp_enqueue_scripts', '_s_scripts' );
  * Implement the Custom Header feature
  */
 //require( get_template_directory() . '/inc/custom-header.php' );
+
+//Call the file to add these shortcode in my tinyMCE
+if(!isset($sfb_button_2)){
+	$name = "mybutton";
+	$js = get_template_directory_uri() . '/js/visual_editor_boxes.js.php';
+	$sfb_button_2 = new TinyMceAdder($name, $js);
+	//var_dump($sfb_button_2); die();
+	add_action('admin_head', array($sfb_button_2, 'addSelector'));
+}

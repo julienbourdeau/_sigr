@@ -23,20 +23,19 @@ if( ENV == 'dev' && !is_admin() ) {
 
 	require 'lib/lessc.inc.php';
 
-	$style = get_template_directory() . '/css/style-dev.css';
-	$files = array( 
-				get_template_directory() . '/css/styles.less'
-			);
-	  
-	$lc = new lessc();  
-	$css = '';  
+	$less_file = get_template_directory() . '/css/styles.less';
+	$css_file = get_template_directory() . '/css/style-dev.css';
 
-	foreach($files as $file){  
-		$css .= file_get_contents($file);  
-	}  
+	// create a new cache object, and compile
+	$cache = lessc::cexecute( $less_file );
+	file_put_contents($css_file, $cache['compiled']);
 
-	$css = $lc->parse($css);  
-	file_put_contents($style, $css);
+	// the next time we run, write only if it has updated
+	$last_updated = $cache['updated'];
+	$cache = lessc::cexecute($cache);
+	if ($cache['updated'] > $last_updated) {
+	    file_put_contents($css_file, $cache['compiled']);
+	}
 
 }
 
